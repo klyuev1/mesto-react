@@ -44,14 +44,12 @@ function Main(props) {
       </section>
 
       <section className="elements">
-        {cards.map(({ id, ...props }) => <Card key={id} {...props} />)}
+        {cards.map(card => (
+          <Card key={card._id} card={card} onCardClick={props.onCardClick}/>
+        ))}
       </section>
     </main>
   );
 }
 
 export default Main;
-
-//7. Настройте карточки мест
-// Добавьте запрос к API
-// Показывайте полноразмерную картинку при клике

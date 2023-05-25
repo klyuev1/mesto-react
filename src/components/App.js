@@ -9,6 +9,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -21,12 +22,15 @@ function App() {
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    //Здесь должна быть функция сброса
+    setSelectedCard({});
   }
 
   return (
@@ -36,6 +40,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onEditAvatar={handleEditAvatarClick}
         onAddPlace={handleAddPlaceClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
 
@@ -92,7 +97,10 @@ function App() {
         </label>
       </PopupWithForm>
 
-      {/* <ImagePopup /> */}
+      <ImagePopup 
+      card={selectedCard} 
+      onClose = {closeAllPopups}
+      />
       
 
 
@@ -101,6 +109,3 @@ function App() {
 }
 
 export default App;
-// 5. Настройте работу попапов
-// Добавьте императивные обработчики
-// Декларативный подход
