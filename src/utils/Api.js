@@ -27,7 +27,7 @@ class Api {
     .then((res) => this._checkRes(res));
   }
 
-  patchUserInfo(name, about) {
+  patchUserInfo({name, about}) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
@@ -75,17 +75,24 @@ class Api {
     .then((res) => this._checkRes(res));
   }
 
-  patchAvatar(link) {
+  patchAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: link,
+        avatar: data["avatar"],
       })
     })
     .then((res) => this._checkRes(res));
   }
+
+  // Новый спринт
+  changeLikeCardStatus(cardId, isLiked) {
+		return isLiked ? this.likeCard(cardId) : this.dislikeCard(cardId)
+	};
 }
+
+
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
