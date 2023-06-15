@@ -86,8 +86,9 @@ function App() {
     .then((data) => {
       setCurrentUser(data);
     })
+    .then(() => closeAllPopups())
     .catch((err) => console.log(err));
-    closeAllPopups();
+    
   }
   //---
   
@@ -97,8 +98,8 @@ function App() {
     .then((data) => {
       setCurrentUser(data);
     })
+    .then(() => closeAllPopups())
     .catch((err) => console.log(err));
-    closeAllPopups();
   }
   //---
 
@@ -106,8 +107,8 @@ function App() {
   function handleAddPlaceSubmit(name, link) {
     api.postNewCard(name, link)
     .then((newCard) => setCards([newCard, ...cards]))
+    .then(() => closeAllPopups())
     .catch((err) => console.log(err));
-    closeAllPopups();
   }
   //---
 
